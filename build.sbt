@@ -31,7 +31,7 @@ lazy val sqliteSlick = (project in file("."))
     libraryDependencies ++= Seq(
       "com.typesafe.scala-logging" %% "scala-logging-slf4j"            % "2.1.2",
       "com.typesafe.slick"         %% "slick"                          % "3.1.1",
-      "org.xerial"                 %  "sqlite-jdbc"                    % "3.8.10.1",
+      "org.xerial"                 %  "sqlite-jdbc"                    % "3.16.1",
       "ch.qos.logback"             %  "logback-classic"                % "1.1.2",
       "com.h2database"             %  "h2"                             % "1.4.187" % "test",
       "org.scalatest"              %% "scalatest"                      % "3.0.0"   % "test",
