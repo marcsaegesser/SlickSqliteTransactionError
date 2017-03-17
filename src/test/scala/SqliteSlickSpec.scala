@@ -45,7 +45,7 @@ class SqliteSlickSpec extends AsyncWordSpec with Matchers with StrictLogging {
       }
     }
 
-    "add and modify records in a transaction" in { fixture =>
+    "add and modify records in a DBIO.sequence transaction" in { fixture =>
       val data = List.fill(50)((Random.nextString(10), Random.nextInt(), Random.nextString(10)))
       val updates = data.map { case (c1, c2, c3) => (c1, c2*2, c3.take(5)) }
 
