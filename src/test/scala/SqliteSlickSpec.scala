@@ -6,8 +6,6 @@ import org.scalatest._
 import org.scalatest.fixture.AsyncWordSpec
 import scala.util._
 import scala.concurrent._
-import slick.jdbc.JdbcBackend.Database
-import slick.util.AsyncExecutor
 import com.typesafe.scalalogging.slf4j._
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -63,11 +61,9 @@ class SqliteSlickSpec extends AsyncWordSpec with Matchers with StrictLogging {
 }
 
 class TestData(dbFile: Path) {
-  val driver = slick.driver.SQLiteDriver
+  import slick.jdbc.SQLiteProfile.api._
   val url = "jdbc:sqlite:" + dbFile.toAbsolutePath.toString
   val db = Database.forURL(url, driver = "org.sqlite.JDBC", executor = AsyncExecutor(s"$url-worker", 1, 1000))
-
-  import driver.api._
 
   def create() =
     db.run(testTable.schema.create)
